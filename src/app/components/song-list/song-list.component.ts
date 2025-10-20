@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
@@ -42,10 +43,32 @@ export class SongListComponent implements OnInit {
   selectedSongs: Song[] = [];
   @Output() selectedSongsChanged = new EventEmitter<Song[]>();
 
-  ngOnInit() {}
+  sortBy: 'title' | 'artist' | 'duration' = 'title'; 
+
+  constructor() {}
+  ngOnInit() {
+    this.sortSongs();
+  }
 
   updateSelectedSongs() {
     this.selectedSongs = this.songs.filter(song => song.selected);
     this.selectedSongsChanged.emit(this.selectedSongs);
+  }
+  setSortBy(event: any) {
+    this.sortBy = event.detail.value;
+    this.sortSongs(); 
+  }
+  sortSongs() {
+    this.songs.sort((a, b) => {
+      const aValue = a[this.sortBy].toString().toLowerCase();
+      const bValue = b[this.sortBy].toString().toLowerCase();
+      if (aValue < bValue) {
+        return -1;
+      }
+      if (aValue > bValue) {
+        return 1;
+      }
+      return 0;
+    });
   }
 }

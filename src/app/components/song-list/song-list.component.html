@@ -1,3 +1,17 @@
+    
+<ion-segment (ionChange)="setSortBy($event)" value="title">
+  <ion-segment-button value="title">
+    <ion-label>Title</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="artist">
+    <ion-label>Artist</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="duration">
+    <ion-label>Duration</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+  
 <ion-list>
   <ion-item *ngFor="let song of songs">
     <ion-checkbox slot="start" [(ngModel)]="song.selected" (ngModelChange)="updateSelectedSongs()"></ion-checkbox>
