@@ -1,0 +1,7 @@
+{
+  "name": "hits_up",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
