@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-item *ngFor="let song of songs">
+    <ion-checkbox slot="start" [(ngModel)]="song.selected" (ngModelChange)="updateSelectedSongs()"></ion-checkbox>
+    <ion-label>
+      <h2>{{ song.title }}</h2>
+      <p>{{ song.artist }} - {{ song.duration }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
