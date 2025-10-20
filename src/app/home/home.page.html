@@ -1,20 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Music App</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <app-song-list></app-song-list>
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <app-song-list (selectedSongsChanged)="onSelectedSongsChanged($event)"></app-song-list>
+
+  <h3>Selected Songs:</h3>
+  <ion-list>
+    <ion-item *ngFor="let song of selectedSongs">
+      <ion-label>{{ song.title }} - {{ song.artist }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

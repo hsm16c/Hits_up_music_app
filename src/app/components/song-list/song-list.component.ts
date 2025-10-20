@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Song } from 'src/app/models/song.model';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
   styleUrls: ['./song-list.component.scss'],
-  imports: [CommonModule, FormsModule, IonicModule]})
+  standalone: true,
+  imports: [CommonModule, FormsModule, IonicModule]
+})
 export class SongListComponent implements OnInit {
   songs: Song[] = [
     {
@@ -17,7 +18,7 @@ export class SongListComponent implements OnInit {
       artist: 'Pink Floyd',
       duration: '5:30',
       album: 'Wish You Were Here',
-      albumArt: 'https://example.com/pink-floyd.jpg', // Placeholder URL
+      albumArt: 'https://example.com/pink-floyd.jpg',
       selected: false,
     },
     {
@@ -25,7 +26,7 @@ export class SongListComponent implements OnInit {
       artist: 'The Rolling Stones',
       duration: '4:31',
       album: 'Let It Bleed',
-      albumArt: 'https://example.com/rolling-stones.jpg', // Placeholder URL
+      albumArt: 'https://example.com/rolling-stones.jpg',
       selected: false,
     },
     {
@@ -40,11 +41,11 @@ export class SongListComponent implements OnInit {
 
   selectedSongs: Song[] = [];
   @Output() selectedSongsChanged = new EventEmitter<Song[]>();
-  constructor() {}
 
   ngOnInit() {}
 
   updateSelectedSongs() {
     this.selectedSongs = this.songs.filter(song => song.selected);
+    this.selectedSongsChanged.emit(this.selectedSongs);
   }
 }

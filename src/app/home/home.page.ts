@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { Song } from '../models/song.model';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { SongListComponent } from '../components/song-list/song-list.component';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent,SongListComponent],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
+  standalone: true,
+  imports: [CommonModule, IonicModule, SongListComponent],
 })
 export class HomePage {
-  constructor() {}
+  selectedSongs: Song[] = [];
+
+  onSelectedSongsChanged(songs: Song[]) {
+    this.selectedSongs = songs;
+    console.log('Selected songs:', this.selectedSongs);
+  }
 }
