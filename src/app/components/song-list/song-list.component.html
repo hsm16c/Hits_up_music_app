@@ -13,7 +13,7 @@
 
   
 <ion-list>
-  <ion-item *ngFor="let song of songs">
+  <ion-item *ngFor="let song of songs" (click)="goToDetails(song)">
     <ion-checkbox slot="start" [(ngModel)]="song.selected" (ngModelChange)="updateSelectedSongs()"></ion-checkbox>
     <ion-label>
       <h2>{{ song.title }}</h2>

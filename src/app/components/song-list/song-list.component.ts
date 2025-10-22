@@ -3,7 +3,7 @@ import { Song } from 'src/app/models/song.model';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-song-list',
@@ -45,7 +45,7 @@ export class SongListComponent implements OnInit {
 
   sortBy: 'title' | 'artist' | 'duration' = 'title'; 
 
-  constructor() {}
+  constructor(private router: Router) { }
   ngOnInit() {
     this.sortSongs();
   }
@@ -70,5 +70,8 @@ export class SongListComponent implements OnInit {
       }
       return 0;
     });
+  }
+  goToDetails(song: Song) { // Add goToDetails method
+    this.router.navigate(['/song-details', { title: song.title }]); // Navigate to SongDetailsPage
   }
 }
