@@ -72,6 +72,7 @@ export class SongListComponent implements OnInit {
     });
   }
   goToDetails(song: Song) { // Add goToDetails method
-    this.router.navigate(['/song-details', { title: song.title }]); // Navigate to SongDetailsPage
+    this.router.navigate(['/song-details', song.title]);
+
   }
 }

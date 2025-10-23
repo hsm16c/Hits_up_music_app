@@ -3,6 +3,7 @@ import { Song } from '../models/song.model';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SongListComponent } from '../components/song-list/song-list.component';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-home',
@@ -29,4 +30,21 @@ export class HomePage {
     const seconds = totalSeconds % 60;
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
+  async sharePlaylist() {
+  if (this.selectedSongs.length === 0) {
+    alert('Please select at least one song to share your playlist.');
+    return;
+  }
+
+  const playlistText = this.selectedSongs
+    .map(song => `${song.title} - ${song.artist}`)
+    .join('\n');
+
+  await Share.share({
+    title: 'My Playlist',
+    text: `Check out my playlist:\n\n${playlistText}`,
+    dialogTitle: 'Share your playlist with friends',
+  });
+}
+
 }

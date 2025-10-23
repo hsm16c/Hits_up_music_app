@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <app-song-list (selectedSongsChanged)="onSelectedSongsChanged($event)"></app-song-list>
-
+  
   <h3>Selected Songs:</h3>
   <ion-list>
     <ion-item *ngFor="let song of selectedSongs">
@@ -18,5 +18,9 @@
 
     Total duration: {{ calculateTotalDuration() }}
 
-  
+    <ion-button expand="block" color="primary" (click)="sharePlaylist()">
+  <ion-icon name="share-outline" slot="start"></ion-icon>
+    Share Playlist
+  </ion-button>
+
 </ion-content>

@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { Song } from 'src/app/models/song.model'; // Import Song interface
+import { IonicModule } from '@ionic/angular';
+import { Song } from 'src/app/models/song.model';
 
 @Component({
   selector: 'app-song-details',
   templateUrl: './song-details.page.html',
   styleUrls: ['./song-details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule  // ✅ This line fixes the NG2011 errors
+  ]
 })
 export class SongDetailsPage implements OnInit {
   songTitle: string | null = null;
-  song: Song | undefined; // Add song property
-  songs: Song[] = [ // Add songs array (same as in SongListComponent)
+  song: Song | undefined;
+
+  songs: Song[] = [
     {
       title: 'Wish You Were Here',
       artist: 'Pink Floyd',
@@ -42,14 +47,16 @@ export class SongDetailsPage implements OnInit {
     },
   ];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.songTitle = this.route.snapshot.paramMap.get('title');
-    console.log('Song Title from Route:', this.songTitle); // Add this line
+  this.route.paramMap.subscribe(params => {
+    this.songTitle = params.get('title');
+    console.log('Song Title from Route:', this.songTitle);
 
-    this.song = this.songs.find(song => song.title === this.songTitle); // Find the song
-    console.log('Song Details:', this.song); // Log the song details
-  }
+    this.song = this.songs.find(song => song.title === this.songTitle);
+    console.log('Song Details:', this.song);
+  });
+}
 
 }
