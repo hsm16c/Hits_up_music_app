@@ -122,42 +122,6 @@ Le projet intègre une configuration **Capacitor** pour Android. Cependant, des 
 - Versions des dépendances
 
 **Note :** La génération d'APK nécessite une configuration supplémentaire de l'environnement de build Android.
-
----
-
-## 🔧 Technologies Utilisées
-
-| Technologie | Version | Usage |
-|------------|---------|--------|
-| **Ionic** | 8.x | Framework UI mobile |
-| **Angular** | 18.x | Framework frontend |
-| **Capacitor** | 6.x | Accès aux API natives |
-| **TypeScript** | 5.x | Langage de développement |
-| **SCSS** | - | Préprocesseur CSS |
-
----
-
-## 📊 Points d'Évaluation Suggérés
-
-### Compétences Techniques
-- ✅ Maîtrise des composants Ionic (segment, list, card, checkbox)
-- ✅ Implémentation du routing Angular
-- ✅ Gestion d'état et binding bidirectionnel
-- ✅ Intégration de plugins Capacitor
-- ✅ Manipulation de données (tri, filtrage, calculs)
-
-### Qualité du Code
-- ✅ Architecture modulaire et réutilisable
-- ✅ Respect des conventions Angular/Ionic
-- ✅ Utilisation de TypeScript et typage
-- ✅ Organisation des fichiers et dossiers
-
-### Interface Utilisateur
-- ✅ Design responsive et mobile-first
-- ✅ Expérience utilisateur fluide
-- ✅ Utilisation cohérente des composants Ionic
-- ✅ Gestion des interactions utilisateur
-
 ---
 
 ## 👨‍💻 Informations Étudiantes
@@ -166,24 +130,3 @@ Le projet intègre une configuration **Capacitor** pour Android. Cependant, des 
 **Formation :** Master 2 – Systèmes Intelligents, Mobiles et Embarqués  
 **Établissement :** Université de Rouen  
 **Année Universitaire :** 2024-2025
-
----
-
-## 📝 Notes pour l'Évaluation
-
-### Points Forts Identifiés
-- Interface utilisateur claire et intuitive
-- Fonctionnalités essentielles implémentées et fonctionnelles
-- Architecture respectant les standards du framework
-- Documentation visuelle complète (captures d'écran)
-
-### Axes d'Amélioration Possibles
-- Finalisation de la configuration de build Android
-- Ajout de tests unitaires et d'intégration
-- Persistance des données (LocalStorage/SQLite)
-- Optimisation des performances et lazy loading
-
----
-
-**Documentation préparée pour l'évaluation académique**  
-*Version 1.0 - Octobre 2025*
