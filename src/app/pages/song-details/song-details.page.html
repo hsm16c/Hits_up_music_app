@@ -1,37 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>song-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ song?.title || 'Song Details' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">song-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="song-details-container" *ngIf="song">
+    <div class="album-cover">
+      <img [src]="song.albumArt" alt="{{ song.title }}" />
+    </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ song?.title }}</ion-card-title>
-      <ion-card-subtitle>{{ song?.artist }}</ion-card-subtitle>
-    </ion-card-header>
+    <h1>{{ song.title }}</h1>
+    <h2>{{ song.artist }}</h2>
 
-    <ion-card-content>
-      <img [src]="song?.albumArt" alt="Cover Image" *ngIf="song?.albumArt">
+    <div class="song-meta">
+      <p><strong>Album:</strong> {{ song.album }}</p>
+      <p><strong>Duration:</strong> {{ song.duration }}</p>
+    </div>
 
-      
-      <ion-item>
-        <ion-label>Duration:</ion-label>
-        <ion-label slot="end">{{ song?.duration }}</ion-label>
-      </ion-item>
+    <ion-button expand="block" shape="round" color="primary" fill="solid">
+      <ion-icon slot="start" name="play-outline"></ion-icon>
+      Play Song
+    </ion-button>
+  </div>
 
-      
-      <ion-item>
-        <ion-label>Album:</ion-label>
-        <ion-label slot="end">{{ song?.album }}</ion-label>
-      </ion-item>
-
-    </ion-card-content>
-  </ion-card>
+  <div class="empty-state" *ngIf="!song">
+    <ion-icon name="musical-notes-outline"></ion-icon>
+    <p>No song details available.</p>
+  </div>
 </ion-content>

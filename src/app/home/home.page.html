@@ -1,26 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Music App</ion-title>
+    <ion-title>HITS UP</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Song List Component -->
   <app-song-list (selectedSongsChanged)="onSelectedSongsChanged($event)"></app-song-list>
-  
-  <h3>Selected Songs:</h3>
-  <ion-list>
-    <ion-item *ngFor="let song of selectedSongs">
-      <ion-label>{{ song.title }} - {{ song.artist }}</ion-label>
-    </ion-item>
-  </ion-list>
 
-  
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="selectedSongs.length === 0">
+    <ion-icon name="musical-notes-outline"></ion-icon>
+    <p>Select songs to start building your playlist 🎧</p>
+  </div>
 
-    Total duration: {{ calculateTotalDuration() }}
+  <!-- Selected Songs Section -->
+  <div class="playlist-container" *ngIf="selectedSongs.length > 0">
+    <h3>Your Selected Songs ({{ selectedSongs.length }})</h3>
 
-    <ion-button expand="block" color="primary" (click)="sharePlaylist()">
-  <ion-icon name="share-outline" slot="start"></ion-icon>
-    Share Playlist
-  </ion-button>
+    <ion-list lines="none">
+      <ion-item *ngFor="let song of selectedSongs" class="playlist-item">
+        <ion-avatar slot="start">
+          <img [src]="song.albumArt" alt="{{ song.title }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ song.title }}</h2>
+          <p>{{ song.artist }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="playlist-summary">
+      <p><strong>Total duration:</strong> {{ calculateTotalDuration() }}</p>
+    </div>
+  </div>
+
+  <div class="share-container">
+    <ion-button expand="block" class="share-button" (click)="sharePlaylist()">
+      <ion-icon name="share-social-outline" slot="start"></ion-icon>
+      Share Playlist
+    </ion-button>
+  </div>
+
+
 
 </ion-content>

@@ -10,20 +10,30 @@
   </ion-segment-button>
 </ion-segment>
 
-<ion-list>
-  <ion-item *ngFor="let song of songs">
-    <!-- Checkbox (no navigation on click) -->
-    <ion-checkbox
-      slot="start"
-      [(ngModel)]="song.selected"
-      (ngModelChange)="updateSelectedSongs()"
-      (click)="$event.stopPropagation()">
-    </ion-checkbox>
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-item
+      *ngFor="let song of songs"
+      (click)="goToDetails(song)"
+      button
+      detail
+      class="song-item"
+    >
+      <ion-avatar slot="start">
+        <img [src]="song.albumArt" alt="{{ song.title }}" />
+      </ion-avatar>
 
-    <!-- Label (navigates to details when clicked) -->
-    <ion-label (click)="goToDetails(song)">
-      <h2>{{ song.title }}</h2>
-      <p>{{ song.artist }} - {{ song.duration }}</p>
-    </ion-label>
-  </ion-item>
-</ion-list>
+      <ion-label>
+        <h2>{{ song.title }}</h2>
+        <p>{{ song.artist }} · {{ song.duration }}</p>
+      </ion-label>
+
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="song.selected"
+        (ngModelChange)="updateSelectedSongs()"
+        (click)="$event.stopPropagation()"
+      ></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
